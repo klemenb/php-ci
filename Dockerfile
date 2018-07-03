@@ -5,7 +5,7 @@ LABEL maintainer="klemen.bratec@gmail.com"
 # Install utilities and prerequisites
 RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get install -y --no-install-recommends curl vim nano bzip2 wget unzip mysql-client sqlite apt-utils apt-transport-https && \
+    apt-get install -y --no-install-recommends curl vim nano bzip2 wget unzip mysql-client sqlite apt-utils apt-transport-https gettext && \
     apt-get install -y --no-install-recommends git subversion mercurial ssh && \
     apt-get install -y --no-install-recommends build-essential g++ gcc make autoconf pkg-config gnupg dirmngr && \
     apt-get install -y --no-install-recommends libfreetype6-dev libc-dev libcurl4-openssl-dev libmcrypt-dev libxml2-dev libicu-dev libpcre3-dev libgd-dev libxslt-dev && \
