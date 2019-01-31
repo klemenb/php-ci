@@ -7,10 +7,14 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install -y --no-install-recommends curl vim nano bzip2 wget unzip mysql-client sqlite apt-utils apt-transport-https gettext && \
     apt-get install -y --no-install-recommends git subversion mercurial ssh && \
+    apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools && \
     apt-get install -y --no-install-recommends build-essential g++ gcc make autoconf pkg-config gnupg dirmngr && \
     apt-get install -y --no-install-recommends libfreetype6-dev libc-dev libcurl4-openssl-dev libzip-dev libmcrypt-dev libxml2-dev libicu-dev libpcre3-dev libgd-dev libxslt-dev libpq-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+RUN pip3 install ansible requests google-auth
 
 # Install PHP extensions
 RUN docker-php-ext-install soap && \
@@ -44,11 +48,3 @@ RUN VERSION=node_11.x && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     npm install -g npm@latest gulp grunt
-
-# Install Ansible
-RUN echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" | tee /etc/apt/sources.list.d/ansible.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367 && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends ansible && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
