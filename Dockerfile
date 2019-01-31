@@ -1,4 +1,4 @@
-FROM php:7.2-cli-stretch
+FROM php:7.3-cli-stretch
 
 LABEL maintainer="klemen.bratec@gmail.com"
 
@@ -8,7 +8,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     apt-get install -y --no-install-recommends curl vim nano bzip2 wget unzip mysql-client sqlite apt-utils apt-transport-https gettext && \
     apt-get install -y --no-install-recommends git subversion mercurial ssh && \
     apt-get install -y --no-install-recommends build-essential g++ gcc make autoconf pkg-config gnupg dirmngr && \
-    apt-get install -y --no-install-recommends libfreetype6-dev libc-dev libcurl4-openssl-dev libmcrypt-dev libxml2-dev libicu-dev libpcre3-dev libgd-dev libxslt-dev && \
+    apt-get install -y --no-install-recommends libfreetype6-dev libc-dev libcurl4-openssl-dev libzip-dev libmcrypt-dev libxml2-dev libicu-dev libpcre3-dev libgd-dev libxslt-dev libpq-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -18,6 +18,8 @@ RUN docker-php-ext-install soap && \
     docker-php-ext-install xsl && \
     docker-php-ext-install gettext && \
     docker-php-ext-install pdo_mysql && \
+    docker-php-ext-install pdo_pgsql && \
+    docker-php-ext-install pgsql && \
     docker-php-ext-install intl && \
     docker-php-ext-install gd
 
