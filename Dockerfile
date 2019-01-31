@@ -34,7 +34,7 @@ RUN curl -s https://getcomposer.org/installer | php && \
 RUN composer global require "phpunit/phpunit=7.*"
 
 # Install Node.js along with gulp and grunt
-RUN VERSION=node_9.x && \
+RUN VERSION=node_11.x && \
     curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
     echo "deb https://deb.nodesource.com/$VERSION stretch main" | tee /etc/apt/sources.list.d/nodesource.list && \
     echo "deb-src https://deb.nodesource.com/$VERSION stretch main" | tee -a /etc/apt/sources.list.d/nodesource.list && \
