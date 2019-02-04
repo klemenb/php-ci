@@ -24,6 +24,7 @@ RUN docker-php-ext-install soap && \
     docker-php-ext-install pdo_mysql && \
     docker-php-ext-install pdo_pgsql && \
     docker-php-ext-install pgsql && \
+    docker-php-ext-install pcntl && \
     docker-php-ext-install intl && \
     docker-php-ext-install gd
 
