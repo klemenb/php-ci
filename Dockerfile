@@ -1,4 +1,4 @@
-FROM php:7.4-cli-buster
+FROM php:8-cli-buster
 
 LABEL maintainer="klemen.bratec@gmail.com"
 
@@ -39,14 +39,13 @@ RUN docker-php-ext-install soap && \
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PATH ~/.composer/vendor/bin/:$PATH
 RUN curl -s https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer && \
-    composer global require hirak/prestissimo
+    mv composer.phar /usr/local/bin/composer
 
 # Install PHPUnit
-RUN composer global require "phpunit/phpunit=8.*"
+RUN composer global require "phpunit/phpunit=9.*"
 
 # Install Node.js along with gulp and grunt
-RUN VERSION=node_12.x && \
+RUN VERSION=node_14.x && \
     curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
     echo "deb https://deb.nodesource.com/$VERSION stretch main" | tee /etc/apt/sources.list.d/nodesource.list && \
     echo "deb-src https://deb.nodesource.com/$VERSION stretch main" | tee -a /etc/apt/sources.list.d/nodesource.list && \
