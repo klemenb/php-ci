@@ -1,4 +1,4 @@
-FROM php:8-cli-buster
+FROM php:8.0-cli-bullseye
 
 LABEL maintainer="klemen.bratec@gmail.com"
 
@@ -7,13 +7,13 @@ RUN DEBIAN_FRONTEND=noninteractive && \
     mkdir -p /usr/share/man/man1 && \
     mkdir -p /usr/share/man/man7 && \
     apt-get update && \
-    apt-get install -y --no-install-recommends curl vim nano bzip2 wget unzip default-mysql-client sqlite apt-utils apt-transport-https gettext && \
+    apt-get install -y --no-install-recommends curl vim nano bzip2 wget unzip default-mysql-client apt-utils apt-transport-https gettext && \
     apt-get install -y --no-install-recommends git subversion ssh && \
-    apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools python3-wheel && \
+    apt-get install -y --no-install-recommends python3 python3-pip python3-setuptools python3-wheel python3-dev && \
     apt-get install -y --no-install-recommends postgresql-client && \
     apt-get install -y --no-install-recommends build-essential g++ gcc make autoconf pkg-config gnupg dirmngr && \
     apt-get install -y --no-install-recommends libfreetype6-dev libc-dev libcurl4-openssl-dev libzip-dev libmcrypt-dev libxml2-dev libonig-dev && \
-    apt-get install -y --no-install-recommends libicu-dev libpcre3-dev libgd-dev libxslt-dev libpq-dev libgmp-dev && \
+    apt-get install -y --no-install-recommends libicu-dev libpcre3-dev libgd-dev libxslt-dev libpq-dev libgmp-dev libffi-dev && \
     apt-get install -y --no-install-recommends libfreetype6-dev libjpeg62-turbo-dev libpng-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -47,8 +47,8 @@ RUN composer global require "phpunit/phpunit=9.*"
 # Install Node.js along with gulp and grunt
 RUN VERSION=node_14.x && \
     curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-    echo "deb https://deb.nodesource.com/$VERSION stretch main" | tee /etc/apt/sources.list.d/nodesource.list && \
-    echo "deb-src https://deb.nodesource.com/$VERSION stretch main" | tee -a /etc/apt/sources.list.d/nodesource.list && \
+    echo "deb https://deb.nodesource.com/$VERSION bullseye main" | tee /etc/apt/sources.list.d/nodesource.list && \
+    echo "deb-src https://deb.nodesource.com/$VERSION bullseye main" | tee -a /etc/apt/sources.list.d/nodesource.list && \
     DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install -y --no-install-recommends nodejs && \
