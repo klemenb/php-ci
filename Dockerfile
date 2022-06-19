@@ -1,4 +1,4 @@
-FROM php:8.0-cli-bullseye
+FROM php:8.1-cli-bullseye
 
 LABEL maintainer="klemen.bratec@gmail.com"
 
@@ -35,7 +35,7 @@ RUN docker-php-ext-install soap && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install gd
 
-# Install Composer along with prestissimo
+# Install Composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PATH ~/.composer/vendor/bin/:$PATH
 RUN curl -s https://getcomposer.org/installer | php && \
@@ -44,8 +44,8 @@ RUN curl -s https://getcomposer.org/installer | php && \
 # Install PHPUnit
 RUN composer global require "phpunit/phpunit=9.*"
 
-# Install Node.js along with gulp and grunt
-RUN VERSION=node_14.x && \
+# Install Node.js
+RUN VERSION=node_16.x && \
     curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
     echo "deb https://deb.nodesource.com/$VERSION bullseye main" | tee /etc/apt/sources.list.d/nodesource.list && \
     echo "deb-src https://deb.nodesource.com/$VERSION bullseye main" | tee -a /etc/apt/sources.list.d/nodesource.list && \
@@ -54,4 +54,4 @@ RUN VERSION=node_14.x && \
     apt-get install -y --no-install-recommends nodejs && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    npm install -g npm@latest gulp
+    npm install -g npm@latest
