@@ -2,12 +2,11 @@
 
 PHP Docker image for use with continous integration tools. It includes a standard set of tools and utilities for building and deploying PHP applications.
 
-These are the additions to the original PHP 8 CLI image:
+These are the additions to the original PHP 8.1 CLI image:
 
 * VCS (git, subversion)
-* Composer (with prestissimo)
+* Composer
 * Node.js
-* Gulp
 * SSH
 * Ansible
 * PHP extensions:
